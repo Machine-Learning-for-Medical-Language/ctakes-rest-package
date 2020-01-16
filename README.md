@@ -19,11 +19,12 @@ Instructions for running cTAKES rest server to get CUIs for documents.
 
    This will take quite a while to start up. If you get the docker container id with ```docker ps``` you can check the progress of this container startup with ```docker logs <container id>```. You only need to specify the first few characters of the container id. The container is ready when the final line of the log has the following: ```org.apache.catalina.startup.Catalina.start Server startup in [25,329] milliseconds.```
 
-5. Use the functions in ctakes_rest.py to extract CUIs using the REST server. Pseudocode should be soomething like:
+5. Run the script sample_extract_cuis.py, which demonstrates how to use the functions in ctakes_rest.py to extract CUIs using the REST server. 
 
 ```
-for (patient_num,discharge_summary) in read_discharge_summaries():
+python sample_extract_cuis.py fake_notes/ output.txt
  
 ```  
 
-where patient_iterator is a generator that uses your APIs for your Word discharge summaries to return patient id, discharge summary tuples.
+6. Modify the code in sample_extract_cuis.py to iterate and extract text from your documents. Modify the file writing code so that the first part of each line is some unique identifier for that document/patient.
+
