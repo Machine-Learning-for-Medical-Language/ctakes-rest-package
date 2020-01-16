@@ -8,12 +8,16 @@ Instructions for running cTAKES rest server to get CUIs for documents.
     ```docker build -t ctakes-web-rest .```
 
 3. Create environment variables for your UMLS account:
+
     ```export ctakes_umlsuser=<your username>```
+
     ```export ctakes_umlsps=<your pw>```
 
 4. Start the docker container:
+
     ```./start_rest.sh```
-   This will take quite a while to start up. If you get the docker process id with ```docker ps``` you can check the progress of this container startup with ```docker logs <process id>```. The container is ready when the final line of the log has the following: ```org.apache.catalina.startup.Catalina.start Server startup in [25,329] milliseconds.```
+
+   This will take quite a while to start up. If you get the docker container id with ```docker ps``` you can check the progress of this container startup with ```docker logs <container id>```. You only need to specify the first few characters of the container id. The container is ready when the final line of the log has the following: ```org.apache.catalina.startup.Catalina.start Server startup in [25,329] milliseconds.```
 
 5. Use the functions in ctakes_rest.py to extract CUIs using the REST server. Pseudocode should be soomething like:
 
