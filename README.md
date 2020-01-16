@@ -5,6 +5,7 @@ Instructions for running cTAKES rest server to get CUIs for documents.
 1. Create a UMLS account: https://uts.nlm.nih.gov/license.html
 
 2. Run the command to create the docker container using the Dockerfile in this directory:
+
     ```docker build -t ctakes-web-rest .```
 
 3. Create environment variables for your UMLS account:
