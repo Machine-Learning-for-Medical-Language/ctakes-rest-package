@@ -20,7 +20,7 @@ Instructions for running cTAKES rest server to get CUIs for documents.
 
    This will take quite a while to start up. If you get the docker container id with ```docker ps``` you can check the progress of this container startup with ```docker logs <container id>```. You only need to specify the first few characters of the container id. The container is ready when the final line of the log has the following: ```org.apache.catalina.startup.Catalina.start Server startup in [25,329] milliseconds.```
 
-5. Run the script sample_extract_cuis.py, which demonstrates how to use the functions in ctakes_rest.py to extract CUIs using the REST server. 
+5. Run the script sample_extract_cuis.py, which demonstrates how to use the functions in ctakes_rest.py to extract CUIs using the REST server. Take a look at output.txt to make sure it ran correctly -- on each line it should print out a filename followed by a space-delimited list of CUIs.
 
 ```
 python sample_extract_cuis.py fake_notes/ output.txt
