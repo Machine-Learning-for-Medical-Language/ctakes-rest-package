@@ -1,9 +1,12 @@
 FROM openjdk:8-alpine
   
 RUN apk update && apk add ca-certificates openssl wget unzip subversion maven
+RUN apk upgrade
+
 
 ## Download apache-tomcat and extract:
-RUN wget http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-9/v9.0.21/bin/apache-tomcat-9.0.21.zip
+# RUN wget http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-9/v9.0.21/bin/apache-tomcat-9.0.21.zip
+RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.21/bin/apache-tomcat-9.0.21.zip
 RUN unzip apache-tomcat-9.0.21.zip
 
 ## Check out version of ctakes with best working web-rest module
