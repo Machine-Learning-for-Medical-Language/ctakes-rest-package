@@ -12,7 +12,7 @@ Instructions for running cTAKES rest server to get CUIs for documents.
 
     ```export ctakes_umlsuser=<your username>```
 
-    ```export ctakes_umlsps=<your pw>```
+    ```export ctakes_umlspw=<your pw>```
 
 4. Start the docker container:
 
