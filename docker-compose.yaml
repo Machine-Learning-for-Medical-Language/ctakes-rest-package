@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  ctakes:
+    image: nlp_ctakes
+    build:
+      context: .
+    environment:
+      - ctakes_umlsuser=umls_api_key
+      # Environment variable umls_api_key must be defined
+      - ctakes_umlspw=${umls_api_key}
+    restart: always
+    expose:
+      - "8080"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ctakes
+    restart: always
+    ports:
+      - 4000:4000
