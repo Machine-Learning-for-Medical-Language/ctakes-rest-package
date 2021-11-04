@@ -20,7 +20,7 @@ under the License.
 <lookupSpecification>
     <dictionaries>
         <dictionary>
-            <name>sno_rx_16abTerms</name>
+            <name>snorx_21aaTerms</name>
             <implementationName>org.apache.ctakes.dictionary.lookup2.dictionary.UmlsJdbcRareWordDictionary</implementationName>
             <properties>
                 <!-- urls for hsqldb memory connections must be file types in hsql 1.8.
@@ -30,7 +30,7 @@ under the License.
                 for the sake of ide ease-of-use, the user should be aware of these hsql limitations.
                 -->
                 <property key="jdbcDriver" value="org.hsqldb.jdbcDriver"/>
-                <property key="jdbcUrl" value="jdbc:hsqldb:file:org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab/sno_rx_16ab"/>
+                <property key="jdbcUrl" value="jdbc:hsqldb:file:org/apache/ctakes/dictionary/lookup/fast/snorx_2021aa/snorx_2021aa"/>
                 <property key="jdbcUser" value="sa"/>
                 <property key="jdbcPass" value=""/>
                 <property key="rareWordTable" value="cui_terms"/>
@@ -44,11 +44,11 @@ under the License.
 
     <conceptFactories>
         <conceptFactory>
-            <name>sno_rx_16abConcepts</name>
+            <name>snorx_21aaConcepts</name>
             <implementationName>org.apache.ctakes.dictionary.lookup2.concept.UmlsJdbcConceptFactory</implementationName>
             <properties>
                 <property key="jdbcDriver" value="org.hsqldb.jdbcDriver"/>
-                <property key="jdbcUrl" value="jdbc:hsqldb:file:org/apache/ctakes/dictionary/lookup/fast/sno_rx_16ab/sno_rx_16ab"/>
+                <property key="jdbcUrl" value="jdbc:hsqldb:file:org/apache/ctakes/dictionary/lookup/fast/snorx_2021aa/snorx_2021aa"/>
                 <property key="jdbcUser" value="sa"/>
                 <property key="jdbcPass" value=""/>
                 <property key="umlsUrl" value="https://uts-ws.nlm.nih.gov/restful/isValidUMLSUser"/>
@@ -69,9 +69,9 @@ under the License.
     <!--  Defines what terms and concepts will be used  -->
     <dictionaryConceptPairs>
         <dictionaryConceptPair>
-            <name>sno_rx_16abPair</name>
-            <dictionaryName>sno_rx_16abTerms</dictionaryName>
-            <conceptFactoryName>sno_rx_16abConcepts</conceptFactoryName>
+            <name>snorx_21aaPair</name>
+            <dictionaryName>snorx_21aaTerms</dictionaryName>
+            <conceptFactoryName>snorx_21aaConcepts</conceptFactoryName>
         </dictionaryConceptPair>
     </dictionaryConceptPairs>
 
@@ -87,7 +87,7 @@ under the License.
         <properties>
             <!-- Depending upon the consumer, the value of codingScheme may or may not be used.  With the packaged consumers,
             codingScheme is a default value used only for cuis that do not have secondary codes (snomed, rxnorm, etc.)  -->
-            <property key="codingScheme" value="sno_rx_16ab"/>
+            <property key="codingScheme" value="snorx_21aa"/>
         </properties>
     </rareWordConsumer>
 
