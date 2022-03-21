@@ -22,7 +22,7 @@ COPY pom.xml /ctakes
 
 # This version of the default piper comments out a memory-intensive negation module. If you need to run
 # negation detection, then comment out this line.
-COPY Default.piper /ctakes/ctakes-web-rest/src/main/resources/pipers/
+COPY Dtr.piper /ctakes/ctakes-web-rest/src/main/resources/pipers/Default.piper
 
 WORKDIR /ctakes
 RUN mvn compile -pl '!ctakes-distribution'  -DskipTests

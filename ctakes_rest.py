@@ -3,7 +3,7 @@
 import requests
 
 def add_cuis(json, sem_type, cui_list):
-    for atts in json[sem_type]:
+    for atts in json.get(sem_type, []):
         begin = atts['begin']
         end = atts['end']
         polarity = atts['polarity']
