@@ -1,20 +1,21 @@
 // Commands and parameters to create a default plaintext document processing pipeline with UMLS lookup
 
 // set the thread count
-threads 3
+//threads 1
 
 // Load a simple token processing pipeline from another pipeline file
 load pipers/TsDefaultTokenizerPipeline
 
 // Add non-core annotators
 add ContextDependentTokenizerAnnotator
-addDescription POSTagger
+addDescription concurrent.ThreadSafePosTagger
 
 // Add Chunkers
 load pipers/TsChunkerSubPipe
 
 // Default fast dictionary lookup
 load pipers/TsDictionarySubPipe
+add ContextAnnotator
 
 // Add Cleartk Entity Attribute annotators
 //load pipers/TsAttributeCleartkSubPipe

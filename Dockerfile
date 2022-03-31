@@ -10,7 +10,7 @@ RUN unzip apache-tomcat-9.0.21.zip
 
 ## Check out version of ctakes with best working web-rest module
 ## Then compile with maven
-RUN svn export https://svn.apache.org/repos/asf/ctakes/trunk@1890898 ctakes
+RUN svn export https://svn.apache.org/repos/asf/ctakes/trunk@1894987 ctakes
 
 ## Copy hsql dictionary descriptor into right location
 RUN wget -q -O dict.zip  https://sourceforge.net/projects/ctakesresources/files/snorx_2021aa.zip/download
