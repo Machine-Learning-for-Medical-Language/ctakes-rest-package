@@ -24,7 +24,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.apache.ctakes</groupId>
 	<artifactId>ctakes</artifactId>
-	<version>4.0.1-SNAPSHOT</version>
+	<version>5.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Apache cTAKES</name>
 	<url>http://ctakes.apache.org</url>
@@ -32,18 +32,18 @@
 	<scm>
 		<!-- In child modules, Maven will append ${artifactId} to the following 
 			URLs -->
-		<connection>scm:svn:https://svn.apache.org/repos/asf/ctakes/trunk</connection>
-		<developerConnection>scm:svn:https://svn.apache.org/repos/asf/ctakes/trunk</developerConnection>
-		<url>https://svn.apache.org/repos/asf/ctakes/trunk</url>
+		<connection>scm:git:https://github.com/apache/ctakes</connection>
+		<developerConnection>scm:git:https://github.com/apache/ctakes</developerConnection>
+		<url>https://github.com/apache/ctakes/tree/main</url>
 	</scm>
 	<issueManagement>
 		<system>jira</system>
 		<url>https://issues.apache.org/jira/browse/ctakes</url>
 	</issueManagement>
-	<ciManagement>
-		<system>jenkins</system>
-		<url>https://builds.apache.org/job/ctakes-trunk/</url>
-	</ciManagement>
+<!--	<ciManagement>-->
+<!--		<system>jenkins</system>-->
+<!--		<url>https://builds.apache.org/job/ctakes-trunk/</url>-->
+<!--	</ciManagement>-->
 
 	<mailingLists>
 		<mailingList>
@@ -78,6 +78,7 @@
 	</mailingLists>
 
 	<properties>
+		<ctakes.models.version>5.0.0-SNAPSHOT</ctakes.models.version>
 		<!-- dependencies -->
 		<ant.version>1.9.2</ant.version>
 		<antlr.version>2.7.7</antlr.version>
@@ -112,7 +113,7 @@
 		<javassist.version>3.15.0-GA</javassist.version>
 		<jaxb.version>2.2.5</jaxb.version>
 		<jaxb2-maven-plugin.version>1.6</jaxb2-maven-plugin.version>
-		<jchronic.version>0.2.6</jchronic.version>
+		<jchronic.version>0.2.8</jchronic.version>
 		<jetty.version>9.1.0.M0</jetty.version>
 		<jsf-api.version>2.1.3</jsf-api.version>
 		<jsf-impl.version>2.1.3</jsf-impl.version>
@@ -120,17 +121,33 @@
 		<junit.version>4.11</junit.version>
 		<jwi.version>2.2.3</jwi.version>
 		<mastif.version>1.4</mastif.version>
-		<maven-antrun-plugin.version>1.6</maven-antrun-plugin.version>
-		<maven-assembly-plugin.version>2.4</maven-assembly-plugin.version>
+		<maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+		<maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
 		<maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
-		<maven-surefire-plugin.version>2.12.1</maven-surefire-plugin.version>
-		<maven-war-plugin.version>2.4</maven-war-plugin.version>
+		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+		<maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+		<maven-license-plugin.version>1.9.0</maven-license-plugin.version>
+		<maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+		<maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
+		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<maven-install-plugin.version>3.0.1</maven-install-plugin.version>
+		<maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+		<maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+		<maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
+		<maven-site-plugin.version>4.0.0-M3</maven-site-plugin.version>
+		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+		<apache-rat-plugin.version>0.15</apache-rat-plugin.version>
+		<properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
+		<maven-resources-plugin.version>3.0.0</maven-resources-plugin.version>
+		<maven-remote-resources-plugin.version>3.0.0</maven-remote-resources-plugin.version>
+
 		<mysql-connector.version>5.1.26</mysql-connector.version>
 		<scala-library.version>2.11.7</scala-library.version>
 		<scala-tools.version>0.4.0</scala-tools.version>
 		<servlet-jsp-api.version>2.2</servlet-jsp-api.version>
 		<servlet-jstl.version>1.2</servlet-jstl.version>
-		<slf4j.version>1.6.1</slf4j.version>
+		<slf4j.version>2.0.5</slf4j.version>
 		<solr.version>3.5.0</solr.version>
 		<spring.version>4.3.12.RELEASE</spring.version>
 		<uimafit.version>2.4.0</uimafit.version>
@@ -142,6 +159,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 	</properties>
 
 	<parent>
@@ -152,7 +170,6 @@
 
 	<modules>
 		<module>ctakes-gui</module>
-		<module>ctakes-gui-res</module>
 		<module>ctakes-fhir</module>
 		<module>ctakes-utils</module>
 		<module>ctakes-core</module>
@@ -175,44 +192,21 @@
 		<module>ctakes-assertion-zoner</module>
 		<module>ctakes-temporal</module>
 		<module>ctakes-clinical-pipeline</module>
-		<module>ctakes-clinical-pipeline-res</module>
 		<module>ctakes-distribution</module>
 		<module>ctakes-regression-test</module>
-		<module>ctakes-assertion-res</module>
-		<module>ctakes-chunker-res</module>
-		<module>ctakes-constituency-parser-res</module>
-		<module>ctakes-core-res</module>
-		<module>ctakes-coreference-res</module>
-		<module>ctakes-dependency-parser-res</module>
-		<module>ctakes-dependency-parser-res-clear</module>
-		<module>ctakes-dictionary-lookup-res</module>
-		<module>ctakes-lvg-res</module>
-		<module>ctakes-pos-tagger-res</module>
-		<module>ctakes-relation-extractor-res</module>
-		<module>ctakes-side-effect-res</module>
-		<module>ctakes-smoking-status-res</module>
-		<module>ctakes-temporal-res</module>
-		<module>ctakes-assertion-zoner-res</module>
-		<module>ctakes-drug-ner-res</module>
-		<module>ctakes-ne-contexts-res</module>
 		<module>ctakes-template-filler</module>
 		<module>ctakes-examples</module>
-		<module>ctakes-examples-res</module>
-		<module>ctakes-ytex-res</module>
 		<module>ctakes-ytex</module>
 		<module>ctakes-ytex-uima</module>
-		<module>ctakes-ytex-web</module>
 		<module>ctakes-dictionary-lookup-fast</module>
-		<module>ctakes-dictionary-lookup-fast-res</module>
-		<module>ctakes-web-rest</module>
+      <module>ctakes-dockhand</module>
 		<module>ctakes-tiny-rest</module>
-		<module>ctakes-dockhand</module>
+		<module>ctakes-pbj</module>
+		<module>ctakes-user-resources</module>
+		<module>ctakes-web-rest</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
-			<!-- cTAKES third party dependency versions -->
-			<!-- <dependency> <groupId>jama</groupId> <artifactId>jama</artifactId>
-				<version>1.0.2</version> </dependency> -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -251,11 +245,6 @@
 				<artifactId>lucene-core</artifactId>
 				<version>4.0.0</version>
 			</dependency>
-			<!--<dependency>-->
-				<!--<groupId>org.apache.lucene</groupId>-->
-				<!--<artifactId>lucene-parent</artifactId>-->
-				<!--<version>6.5.0</version>-->
-			<!--</dependency>-->
 			<dependency>
 				<groupId>org.apache.lucene</groupId>
 				<artifactId>lucene-contrib</artifactId>
@@ -276,18 +265,6 @@
 				<artifactId>lucene-analyzers-common</artifactId>
 				<version>4.0.0</version>
 			</dependency>
-			<!-- TODO: remove unused dependency -->
-			<!-- dependency>
-				<groupId>org.apache.lucene</groupId>
-				<artifactId>lucene-solr-grandparent</artifactId>
-				<version>4.0.0</version>
-			</dependency -->
-			<!--  TODO : update snowball  -->
-			<!--<dependency>-->
-				<!--<groupId>org.apache.lucene</groupId>-->
-				<!--<artifactId>lucene-snowball</artifactId>-->
-				<!--<version>4.0.0</version>-->
-			<!--</dependency>-->
 			<!-- Jackson -->
 			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
@@ -363,11 +340,6 @@
 				<artifactId>opennlp-maxent</artifactId>
 				<version>3.0.3</version>
 			</dependency>
-			<!--<dependency>-->
-				<!--<groupId>org.apache.uima</groupId>-->
-				<!--<artifactId>uimaj-examples</artifactId>-->
-				<!--<version>2.9.0</version>-->
-			<!--</dependency>-->
 			<dependency>
 				<groupId>tw.edu.ntu.csie</groupId>
 				<artifactId>libsvm</artifactId>
@@ -516,22 +488,12 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-gui-res</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
 				<artifactId>ctakes-fhir</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>ctakes-examples</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-examples-res</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -546,12 +508,17 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
+				<artifactId>ctakes-template-filler</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ctakes</groupId>
 				<artifactId>ctakes-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-core-res</artifactId>
+				<artifactId>ctakes-core-model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -561,17 +528,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-dictionary-lookup-res</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
 				<artifactId>ctakes-dictionary-lookup-fast</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-dictionary-lookup-fast-res</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -586,7 +543,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-pos-tagger-res</artifactId>
+				<artifactId>ctakes-pos-tagger-model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -596,17 +553,12 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-chunker-res</artifactId>
+				<artifactId>ctakes-chunker-model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>ctakes-lvg</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-lvg-res</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -626,21 +578,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-clinical-pipeline-res
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
 					ctakes-ne-contexts
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
-					ctakes-ne-contexts-res
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -654,18 +592,13 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-assertion-res
+					ctakes-assertion-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>ctakes-assertion-zoner</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-assertion-zoner-res</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -678,7 +611,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-constituency-parser-res
+					ctakes-constituency-parser-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -692,7 +625,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-coreference-res
+					ctakes-coreference-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -706,13 +639,6 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-drug-ner-res
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
 					ctakes-side-effect
 				</artifactId>
 				<version>${project.version}</version>
@@ -720,7 +646,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-side-effect-res
+					ctakes-side-effect-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -734,7 +660,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-smoking-status-res
+					ctakes-smoking-status-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -748,17 +674,17 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-dependency-parser-res
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
-					ctakes-dependency-parser-res-clear
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+					ctakes-dependency-parser-model
+            </artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.ctakes</groupId>
+            <artifactId>
+               ctakes-dependency-parser-model-clear
+            </artifactId>
+            <version>${project.version}</version>
+         </dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
@@ -769,7 +695,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-relation-extractor-res
+					ctakes-relation-extractor-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -783,14 +709,7 @@
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
-					ctakes-temporal-res
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
-					ctakes-ytex-res
+					ctakes-temporal-model
 				</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -808,31 +727,33 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.ctakes</groupId>
-				<artifactId>ctakes-ytex-web</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
-					ctakes-tiny-rest
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
-				<artifactId>
-					ctakes-dockhand
-				</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.ctakes</groupId>
 				<artifactId>
 					ctakes-distribution
                 </artifactId>
                 <version>${project.version}</version>
             </dependency>
-			<!-- cTAKES Resources -->
+         <dependency>
+            <groupId>org.apache.ctakes</groupId>
+            <artifactId>ctakes-dockhand</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.ctakes</groupId>
+            <artifactId>ctakes-tiny-rest</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+			<dependency>
+				<groupId>org.apache.ctakes</groupId>
+				<artifactId>ctakes-user-resources</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ctakes</groupId>
+				<artifactId>ctakes-pbj</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- cTAKES dictionary Resources -->
 			<dependency>
 				<groupId>net.sourceforge.ctakesresources</groupId>
 				<artifactId>ctakes-resources-lvg2008</artifactId>
@@ -867,19 +788,50 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<repositories>
+		<repository>
+			<id>apache.snapshots</id>
+			<name>Apache Development Snapshot Repository</name>
+			<url>https://repository.apache.org/content/groups/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<build>
-		<!-- It's good practice to explicitly declare versions for all plugins -->
 		<pluginManagement>
 			<plugins>
-				<!-- TODO: remove dependency upon Apache Ant -->
 				<plugin>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>${maven-antrun-plugin.version}</version>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<executions>
+						<execution>
+							<!--	Copy resources that should be user-editable for testing without requiring recompiling.  -->
+							<!--	This makes it much easier for developers to find resources. -->
+							<!--	Permanent edits must still be made in src/main/resources -->
+							<id>copy-user-resources</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<resources>
+									<resource>
+										<directory>src/user/resources</directory>
+									</resource>
+								</resources>
+								<outputDirectory>${project.basedir}/../resources</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>com.mycila.maven-license-plugin</groupId>
 					<artifactId>maven-license-plugin</artifactId>
-					<version>1.9.0</version>
+					<version>${maven-license-plugin.version}</version>
 					<configuration>
 						<header>ctakes-distribution/src/main/config/license_header.txt</header>
 						<excludes>
@@ -930,66 +882,66 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.4.1</version>
+					<version>${maven-clean-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.4</version>
+					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
-						<compilerArgument>-Xlint</compilerArgument>					
+						<compilerArgument>-Xlint</compilerArgument>
 					</configuration>
 				</plugin>
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.7</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.9</version>
+					<version>${maven-deploy-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-gpg-plugin</artifactId>
-					<version>1.4</version>
+					<version>${maven-gpg-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>${maven-install-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
+					<version>${maven-jar-plugin.version}</version>
 					<configuration>
-			          <includes>
-			          <!-- Resources will be copied by the assembly
-			          No need for it to be inside the jar 
-			            <include>**/*.class</include>
-			            <include>**/types/*.xml</include>			            
-			            <include>**/META-INF/**</include>
-			            -->
-			          </includes>
-	        		</configuration>
+						<includes>
+							<!-- Resources will be copied by the assembly
+                     No need for it to be inside the jar
+                       <include>**/*.class</include>
+                       <include>**/types/*.xml</include>
+                       <include>**/META-INF/**</include>
+                       -->
+						</includes>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+							</manifestEntries>
+						</archive>
+					</configuration>
 				</plugin>
 				<plugin>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.9</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.5</version>
+					<version>${maven-javadoc-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.8</version>
+					<version>${maven-dependency-plugin.version}</version>
 				</plugin>				
 				<plugin>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.1</version>
+					<version>${maven-site-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.1.2</version>
+					<version>${maven-source-plugin.version}</version>
 				</plugin>
 				<!-- Maven expects tests to start or end with "Test", not "Tests", so 
 					explicitly include files ending in "Tests" -->
@@ -1006,25 +958,18 @@
 						<argLine>-Xmx3g</argLine>
 						<forkedProcessTimeoutInSeconds>900</forkedProcessTimeoutInSeconds>
 						<additionalClasspathElements>
-						    <additionalClasspathElement>ctakes-assertion-res/src/main/resources</additionalClasspathElement>						    
-						    <additionalClasspathElement>ctakes-assertion-zoner-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-chunker-res/src/main/resources</additionalClasspathElement>
-                     		<additionalClasspathElement>ctakes-clinical-pipeline-res/src/main/resources</additionalClasspathElement>
-                     		<additionalClasspathElement>ctakes-constituency-parser-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-core-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-coreference-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-dependency-parser-res/src/main/resources</additionalClasspathElement>	
-						    <additionalClasspathElement>ctakes-dictionary-lookup-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-drug-ner-res/src/main/resources</additionalClasspathElement>						    						    					    						    						    						    						    
-						    <additionalClasspathElement>ctakes-lvg-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-ne-contexts-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-pos-tagger-res/src/main/resources</additionalClasspathElement>						    
-						    <additionalClasspathElement>ctakes-relation-extractor-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-side-effect-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-smoking-status-res/src/main/resources</additionalClasspathElement>
-						    <additionalClasspathElement>ctakes-temporal-res/src/main/resources</additionalClasspathElement>						    						    						    						    						    						    						    
-							<additionalClasspathElement>ctakes-ytex-res/src/main/resources</additionalClasspathElement>
-                     <additionalClasspathElement>ctakes-dictionary-lookup-fast-res/src/main/resources</additionalClasspathElement>
+						    <additionalClasspathElement>ctakes-assertion-model/src/main/resources</additionalClasspathElement>						    
+						    <additionalClasspathElement>ctakes-chunker-model/src/main/resources</additionalClasspathElement>
+                     <additionalClasspathElement>ctakes-constituency-parser-model/src/main/resources</additionalClasspathElement>
+                     <additionalClasspathElement>ctakes-core-model/src/main/resources</additionalClasspathElement>
+						    <additionalClasspathElement>ctakes-coreference-model/src/main/resources</additionalClasspathElement>
+                     <additionalClasspathElement>ctakes-dependency-parser-model/src/main/resources</additionalClasspathElement>
+                     <additionalClasspathElement>ctakes-dependency-parser-model-clear/src/main/resources</additionalClasspathElement>
+						    <additionalClasspathElement>ctakes-pos-tagger-model/src/main/resources</additionalClasspathElement>						    
+						    <additionalClasspathElement>ctakes-relation-extractor-model/src/main/resources</additionalClasspathElement>
+						    <additionalClasspathElement>ctakes-side-effect-model/src/main/resources</additionalClasspathElement>
+						    <additionalClasspathElement>ctakes-smoking-status-model/src/main/resources</additionalClasspathElement>
+						    <additionalClasspathElement>ctakes-temporal-model/src/main/resources</additionalClasspathElement>						    						    						    						    						    						    						    
 						</additionalClasspathElements>
 					</configuration>
 				</plugin>
@@ -1033,6 +978,7 @@
 				<plugin>
 					<groupId>org.apache.rat</groupId>
 					<artifactId>apache-rat-plugin</artifactId>
+					<version>${apache-rat-plugin.version}</version>
 					<configuration>	
 							<excludes>
 								<!-- generated directories -->
@@ -1041,6 +987,7 @@
 								<!-- version control -->
 								<exclude>.git/**/*</exclude>
 								<exclude>.gitignore</exclude>
+								<exclude>.github/**/*</exclude>
 								<!-- Eclipse files -->
 								<exclude>**/.*</exclude>
 								<exclude>**/.settings/*</exclude>
@@ -1062,9 +1009,9 @@
 								<exclude>**/data/test/**</exclude>
 								<exclude>**/data/**</exclude>
 								<exclude>**/output/**</exclude>	
-								<exclude>**/sample_note.txt</exclude>																							
+								<exclude>**/sample_note.txt</exclude>							
 							</excludes>
-						<numUnapprovedLicenses>0</numUnapprovedLicenses>								
+						<numUnapprovedLicenses>0</numUnapprovedLicenses>							
 					</configuration>
 				</plugin>
 				<plugin>
@@ -1082,7 +1029,7 @@
 									<pluginExecutionFilter>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-dependency-plugin</artifactId>
-										<versionRange>2.8</versionRange>
+										<versionRange>${maven-dependency-plugin.version}</versionRange>
 										<goals>
 											<goal>unpack-dependencies</goal>
 										</goals>
@@ -1101,7 +1048,7 @@
 									<pluginExecutionFilter>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-remote-resources-plugin</artifactId>
-										<versionRange>[1.0.0,)</versionRange>
+										<versionRange>${maven-remote-resources-plugin.version}</versionRange>
 										<goals>
 											<goal>process</goal>
 										</goals>
@@ -1109,7 +1056,7 @@
 									<action>
 										<ignore />
 									</action>
-								</pluginExecution>																
+								</pluginExecution>									
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -1137,11 +1084,66 @@
 					<groupId>org.apache.uima</groupId>
 					<artifactId>jcasgen-maven-plugin</artifactId>
 					<version>${uimaj.version}</version>
+					<executions>
+						<execution>
+							<goals><goal>generate</goal></goals>
+							<configuration>
+								<typeSystemIncludes>
+									<typeSystemInclude>src/main/resources/org/apache/ctakes/**/types/*.xml</typeSystemInclude>
+								</typeSystemIncludes>
+								<limitToProject>true</limitToProject>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
 	<profiles>
+
+		<profile>
+			<!--		ctakes-web-rest contains a full copy of ctakes in its target/WEB-INF/lib	-->
+			<!--		and another full copy in target/ctakes-web-rest.war	-->
+			<!--		This requires over 1.75 GB	of disk space, in addition to extra build time.  -->
+			<!--		We do not distribute the ctakes-web-rest.war with the ctakes distributable, so why build it? 	-->
+			<!--		It can be built when wanted by enabling this profile ( web-rest-build ).	-->
+			<id>web-rest-build</id>
+			<modules>
+				<module>ctakes-web-rest</module>
+			</modules>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ctakes</groupId>
+						<artifactId>ctakes-web-rest</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
+
+		<profile>
+			<!--		ctakes-ytex-web contains a full copy of ctakes in its target/WEB-INF/lib	-->
+			<!--		and another full copy in target/ctakes-ytex-web.war	-->
+			<!--		This requires over 1.75 GB	of disk space, in addition to extra build time.  -->
+			<!--		We do not distribute the ctakes-ytex-web.war with the ctakes distributable, so why build it? 	-->
+			<!--		It can be built when wanted by enabling this profile ( web-rest-build ).	-->
+			<id>ytex-web-build</id>
+			<modules>
+				<module>ctakes-ytex-web</module>
+			</modules>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ctakes</groupId>
+						<artifactId>ctakes-ytex-web</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
+
+
 		<profile>
 			<id>disable-java8-doclint</id>
 			<activation>
@@ -1151,11 +1153,10 @@
 				<additionalparam>-Xdoclint:none</additionalparam>
 			</properties>
 		</profile>
-		<!--  START SNIPPET: release-profile -->
 		<!-- !IMPORTANT: Overrides the official org.apache:apache (parent pom) -->
 		<profile>
 			<id>apache-release</id>
-                            <build>
+			 <build>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -1170,6 +1171,6 @@
 				</plugins>
 			</build>
 		</profile>
-		<!--  END SNIPPET: release-profile  -->
+
 	</profiles>
 </project>
