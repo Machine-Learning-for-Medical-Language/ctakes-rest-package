@@ -10,9 +10,9 @@ Instructions for running cTAKES rest server to get CUIs for documents.
 
 3. Create environment variables for your UMLS account:
 
-    ```export ctakes_umlsuser=<your username>```
+    ```export ctakes_umlsuser=umls_api_key```
 
-    ```export ctakes_umlspw=<your pw>```
+    ```export ctakes_umlspw=<your umls api key>```
 
 4. Start the docker container:
 
